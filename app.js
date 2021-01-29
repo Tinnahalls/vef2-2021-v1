@@ -1,6 +1,6 @@
 //Imports
 const express = require('express')
-const expressLayouts = required('express-ejs-layouts')
+const expressLayouts = require('express-ejs-layouts')
 
 const app = express();
 const port = 8000;
@@ -19,9 +19,6 @@ app.get('', (req, res) => {
   res.render('index')
 })
 
-
-//Listen on Port 8000
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`)
-});
+//Listen on Port 5500
+app.listen(port, () => console.info(`Example app listening on port ${port}!`))
 
