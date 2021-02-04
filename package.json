@@ -17,7 +17,7 @@
   "scripts": {
     "lint": "eslint src/js",
     "start": "node app.js",
-    "dev": "nodemon index"
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
