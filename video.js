@@ -1,21 +1,41 @@
-const util = require('util');
-const fs = require('fs');
-const path = require('path');
+import { promisify } from 'util';
+import { readFile } from 'fs';
+import { Router } from 'express';
+const router = Router();
 
+const readFileAsync = promisify(readFile);
 
-const readdirAsync = util.promisify(fs.readdir);
-const readFileAsync = util.promisify(fs.readFile);
+async function readList() {
 
-function catchErrors(fn) {
-  return (req, res, next) => fn(req, res, next).catch(next);
+  const file = await readFileAsync('videos.json');
+  const json = JSON.parse(file);
+  return json;
 }
 
-async function readVideoList() {
-  const files = await readdirAsync(articlesPath);
+async function list(req, res, next) {
+  const title = 'Myndband';
+  const json = await readList();
+  const { videos } = json;
 
-  const articles = files
-    .filter(file => path.extname(file) === '.mp4')
-    .map(file => readArticle(`${path.join(articlesPath, file)}`));
-
-  return Promise.all(articles);
+  res.render('videos', { title, videos });
+  return next();
 }
+
+async function video(req, res, next) {
+  const { id } = req.params;
+
+  const json = await readList();
+  const { videos } = json;
+
+  const foundVideo = videos.find(a => a.id === id);
+
+  if (!foundVideo) {
+    return next();
+  }
+
+  const { title } = foundVideo;
+
+  return res.render('video', { title, video: foundVideo });
+}
+
+module.exports = videos;

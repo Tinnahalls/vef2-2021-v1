@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 5000;
 // Get JSON File
 
 
-
 // Get date
 app.locals.parseDate = (d) => {
   const date = new Date(d);
@@ -41,3 +40,6 @@ app.get("", (req, res) => {
 
 // Listen on Port 5000
 app.listen(PORT, () => console.info(`App listening on port ${PORT}`));
+
+
+module.exports = app;
