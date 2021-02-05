@@ -1,3 +1,31 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html,
 body {
   background-color: #dddddd;
+  margin-top: 1rem;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+
+hr {
+  max-width: 600px;
 }
